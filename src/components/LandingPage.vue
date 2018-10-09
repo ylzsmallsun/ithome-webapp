@@ -7,18 +7,33 @@
         {{ `${user.name}:  ${user.age}` }}
       </li>
     </ul>
+    <tabbar>
+      <tabbar-item>
+        <img slot="icon" src="../assets/news-active.png">
+        <span slot="label">资讯</span>
+      </tabbar-item>
+      <tabbar-item show-dot>
+        <img slot="icon" src="../assets/quanzi-active.png">
+        <span slot="label">圈子</span>
+      </tabbar-item>
+    </tabbar>
   </div>
 </template>
 
 <script>
+import { Tabbar, TabbarItem } from 'vux'
 import axiosService from '../axiosService/axiosurlService'
 export default {
-  name: 'HelloWorld',
+  name: 'LandingPage',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       userList: []
     }
+  },
+  components: {
+    Tabbar,
+    TabbarItem
   },
   mounted () {
     console.log('getting list...')
@@ -38,5 +53,8 @@ h1, h2 {
 ul {
   list-style-type: none;
   padding: 0;
+}
+.weui-tabbar {
+  background: #ffffff;
 }
 </style>
