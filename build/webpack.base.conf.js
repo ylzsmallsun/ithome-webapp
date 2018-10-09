@@ -22,7 +22,11 @@ const createLintingRule = () => ({
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main.js'
+    app: [
+      // (注入热更新代码) 生产环境的入口建议把这个去掉
+      'webpack-hot-middleware/client?noInfo=true&reload=true',
+      './src/main.js'
+    ]
   },
   output: {
     path: config.build.assetsRoot,
