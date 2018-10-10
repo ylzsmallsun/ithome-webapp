@@ -1,12 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>User List</h2>
-    <ul>
-      <li v-for="user in userList" :key="user.name">
-        {{ `${user.name}:  ${user.age}` }}
-      </li>
-    </ul>
+  <div class="homePage">
+    <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">IT之家</x-header>
+    <swiper :list="swiper_list" auto height="180px"></swiper>
     <tabbar>
       <tabbar-item>
         <img slot="icon" src="../assets/news-active.png">
@@ -21,26 +16,31 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem } from 'vux'
-import axiosService from '../axiosService/axiosurlService'
+import { Swiper, Tabbar, TabbarItem } from 'vux'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'LandingPage',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      userList: []
+      msg: 'Welcome to IT home App'
+      // swiper_list: []
     }
+  },
+  computed: {
+    ...mapGetters([
+      'swiper_list'
+    ])
   },
   components: {
     Tabbar,
-    TabbarItem
+    TabbarItem,
+    Swiper
   },
   mounted () {
     console.log('getting list...')
-    axiosService.getlistService().then((res) => {
-      console.log(res.data)
-      this.userList = res.data.userList
-    })
+    // send request
+    this.$store.dispatch('getUserList')
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
   </div>
 </template>
@@ -11,13 +10,33 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="less">
+  @import '~vux/src/styles/reset.less';
+
+  html, body {
+    height: 100%;
+    max-width: 414px;
+    margin: 0 auto;
+    /* background-color:*/
+  }
+  #app {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+  .vux-header {
+    background-color: #d22222 !important;
+    .vux-header-more,
+    .vux-header-back,
+    .vux-header-left,
+    .vux-header-right {
+      color: #fff !important;
+    }
+
+    .left-arrow:after,
+    .left-arrow:before {
+      color: #fff !important;
+      border-color: #fff !important;
+    }
+  }
 </style>
