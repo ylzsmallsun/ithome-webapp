@@ -1,6 +1,6 @@
 # ithome-app
 
-> ithome-webapp by vue and node
+> ithome-webapp by vue+vux+koa2
 
 ## Build Setup
 
@@ -9,7 +9,7 @@
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm start
 
 # build for production with minification
 npm run build
