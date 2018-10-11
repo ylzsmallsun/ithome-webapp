@@ -79,11 +79,11 @@ export const axiosResponse = function (response) {
         loadingTip()
         return response
       } else {
-        if (!response.data.message) {
-          MessageBox.alert('异常错误', '提示', {
-            confirmButtonText: '确定'
-          })
-        }
+        // if (!response.data.message) {
+        //   MessageBox.alert('异常错误', '提示', {
+        //     confirmButtonText: '确定'
+        //   })
+        // }
         return response
       }
   }

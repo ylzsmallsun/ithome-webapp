@@ -2,6 +2,7 @@
   <div class="homePage">
     <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">IT之家</x-header>
     <swiper :list="swiper_list" auto height="180px"></swiper>
+    <panel :list="news_list"></panel>
     <tabbar>
       <tabbar-item>
         <img slot="icon" src="../assets/news-active.png">
@@ -16,7 +17,7 @@
 </template>
 
 <script>
-import { Swiper, Tabbar, TabbarItem } from 'vux'
+import { Swiper, Panel, Tabbar, TabbarItem } from 'vux'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -29,18 +30,20 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'swiper_list'
+      'swiper_list',
+      'news_list'
     ])
   },
   components: {
     Tabbar,
     TabbarItem,
-    Swiper
+    Swiper,
+    Panel
   },
   mounted () {
     console.log('getting list...')
     // send request
-    this.$store.dispatch('getUserList')
+    this.$store.dispatch('getNewsList')
   }
 }
 </script>
@@ -56,5 +59,9 @@ ul {
 }
 .weui-tabbar {
   background: #ffffff;
+}
+.weui-media-box__hd {
+  width: 118px !important;
+  height: 90px !important;
 }
 </style>

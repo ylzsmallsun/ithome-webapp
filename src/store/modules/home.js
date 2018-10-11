@@ -2,6 +2,7 @@
  * Created by smallsun on 2018-10-10
  */
 import axiosService from '../axiosService/axiosurlService'
+import * as TYPES from '../type'
 
 const state = {
   author: 'smallsun',
@@ -15,17 +16,33 @@ const state = {
     title: '谷歌Pixel 3/3 XL正式发布'
   }, {
     url: 'javascript:',
-    img: 'https://static.vux.li/demo/5.jpg', // 404
-    title: '五款手游车轮战',
-    fallbackImg: 'https://img.ithome.com/newsuploadfiles/focus/7e81bf56-3530-4437-a2d5-ea631a73908a.jpg'
-  }]
+    img: 'https://img.ithome.com/newsuploadfiles/focus/7e81bf56-3530-4437-a2d5-ea631a73908a.jpg',
+    title: '五款手游车轮战'
+  }],
+  news_list: []
 }
 
 const getters = {
-  swiper_list: state => state.swiper_list
+  swiper_list: state => state.swiper_list,
+  news_list: state => state.news_list
 }
 
 const actions = {
+  getNewsList ({commit}) {
+    axiosService.getNewsList().then((res) => {
+      // console.log(res.data.Result)
+      let list = res.data.Result.map(obj => {
+        return {
+          src: obj.image,
+          title: obj.title,
+          desc: obj.description,
+          url: obj.url
+        }
+      })
+      console.log(list)
+      commit(TYPES.HOME_NEWS_LIST, list)
+    })
+  },
   getUserList () {
     axiosService.getlistService().then((res) => {
       console.log(res.data)
@@ -34,8 +51,15 @@ const actions = {
   }
 }
 
+const mutations = {
+  [TYPES.HOME_NEWS_LIST] (state, data) {
+    state.news_list = data
+  }
+}
+
 export default {
   state,
   actions,
-  getters
+  getters,
+  mutations
 }

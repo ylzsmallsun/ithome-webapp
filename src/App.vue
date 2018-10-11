@@ -39,4 +39,8 @@ export default {
       border-color: #fff !important;
     }
   }
+  .weui-media-box__hd {
+    width: 118px !important;
+    height: 90px !important;
+  }
 </style>
