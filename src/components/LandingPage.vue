@@ -2,7 +2,7 @@
   <div class="homePage">
     <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">IT之家</x-header>
     <swiper :list="swiper_list" auto height="180px"></swiper>
-    <panel :list="news_list"></panel>
+    <panel class="newsList" :list="news_list"></panel>
     <tabbar>
       <tabbar-item>
         <img slot="icon" src="../assets/news-active.png">
@@ -57,11 +57,17 @@ ul {
   list-style-type: none;
   padding: 0;
 }
+.homePage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.newsList {
+  flex: 1;
+  margin-bottom: 50px;
+  overflow: scroll;
+}
 .weui-tabbar {
   background: #ffffff;
-}
-.weui-media-box__hd {
-  width: 118px !important;
-  height: 90px !important;
 }
 </style>

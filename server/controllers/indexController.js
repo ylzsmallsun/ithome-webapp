@@ -1,5 +1,7 @@
 const fs = require('fs')
 const path = require('path')
+const { promisify } = require('util')
+const readFile = promisify(fs.readFile)
 
 module.exports = {
   hello: async (ctx, next) => {
@@ -11,16 +13,8 @@ module.exports = {
   getNewsList: async (ctx, next) => {
     ctx.response.type = 'application/Json'
     let filePath = path.join(__dirname, '../service/newsList.json')
-    // does't work and why?
-    // await fs.readFile(filePath, 'utf-8', function (err, data) {
-    //   if (err) {
-    //     throw err
-    //   } else {
-    //     ctx.response.body = data
-    //     console.log(data)
-    //   }
-    // })
-    ctx.response.body = fs.readFileSync(filePath)
+    ctx.response.body = await readFile(filePath, 'utf-8')
+    // ctx.response.body = fs.readFileSync(filePath)
   },
   getlist: async (ctx, next) => {
     ctx.response.type = 'application/Json'
