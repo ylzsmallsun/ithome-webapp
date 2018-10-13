@@ -16,6 +16,11 @@ module.exports = {
     ctx.response.body = await readFile(filePath, 'utf-8')
     // ctx.response.body = fs.readFileSync(filePath)
   },
+  getTopicList: async (ctx, next) => {
+    ctx.response.type = 'application/Json'
+    let filePath = path.join(__dirname, '../service/topicsList.json')
+    ctx.response.body = await readFile(filePath, 'utf-8')
+  },
   getlist: async (ctx, next) => {
     ctx.response.type = 'application/Json'
     let data = [{

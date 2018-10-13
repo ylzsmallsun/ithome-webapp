@@ -8,7 +8,7 @@
         <img slot="icon" src="../assets/news-active.png">
         <span slot="label">资讯</span>
       </tabbar-item>
-      <tabbar-item show-dot>
+      <tabbar-item show-dot @on-item-click="goToQuanziPage(1)">
         <img slot="icon" src="../assets/quanzi-active.png">
         <span slot="label">圈子</span>
       </tabbar-item>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { Swiper, Panel, Tabbar, TabbarItem } from 'vux'
+import { Swiper, Panel } from 'vux'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -35,8 +35,6 @@ export default {
     ])
   },
   components: {
-    Tabbar,
-    TabbarItem,
     Swiper,
     Panel
   },
@@ -44,6 +42,12 @@ export default {
     console.log('getting list...')
     // send request
     this.$store.dispatch('getNewsList')
+  },
+  methods: {
+    goToQuanziPage (tabbarIndex) {
+      console.log(tabbarIndex)
+      this.$store.dispatch('updateTabbarIndex', {tabbarIndex: tabbarIndex})
+    }
   }
 }
 </script>
@@ -57,16 +61,7 @@ ul {
   list-style-type: none;
   padding: 0;
 }
-.homePage {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.newsList {
-  flex: 1;
-  margin-bottom: 50px;
-  overflow: scroll;
-}
+
 .weui-tabbar {
   background: #ffffff;
 }

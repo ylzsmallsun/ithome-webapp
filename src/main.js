@@ -3,11 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import { XHeader } from 'vux'
+import { XHeader, Tabbar, TabbarItem } from 'vux'
 import store from './store'
 
 Vue.config.productionTip = false
 Vue.component('x-header', XHeader)
+Vue.component('tabbar', Tabbar)
+Vue.component('tabbar-item', TabbarItem)
 
 /* eslint-disable no-new */
 new Vue({

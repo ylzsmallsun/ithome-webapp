@@ -43,4 +43,15 @@ export default {
     width: 118px !important;
     height: 90px !important;
   }
+
+  .homePage, .quanziPage{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .newsList, .topicListContainer {
+    flex: 1;
+    margin-bottom: 50px;
+    overflow: scroll !important;
+  }
 </style>

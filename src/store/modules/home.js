@@ -19,7 +19,8 @@ const state = {
     img: 'https://img.ithome.com/newsuploadfiles/focus/7e81bf56-3530-4437-a2d5-ea631a73908a.jpg',
     title: '五款手游车轮战'
   }],
-  news_list: []
+  news_list: [],
+  tabIndex: 0
 }
 
 const getters = {
