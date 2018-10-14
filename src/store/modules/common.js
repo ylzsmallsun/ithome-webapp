@@ -4,15 +4,22 @@ import VueRouter from '../../router/index.js'
 
 const state = {
   author: 'smallsun',
+  pageHeaderTitle: 'IT之家',
   tabbarIndex: 0
 }
 const getters = {
-  tabIndex: state => state.tabbarIndex
+  pageHeaderTitle: state => state.pageHeaderTitle,
+  tabbarIndex: state => state.tabbarIndex
 }
 const actions = {
   updateTabbarIndex ({ commit }, param) {
     commit(TYPES.UPDATE_TABBAR_INDEX, {
       tabbarIndex: param.tabbarIndex
+    })
+  },
+  updatePageHeaderTitle ({ commit }, param) {
+    commit(TYPES.UPDATE_PAGE_TITLE, {
+      pageTitle: param.pageTitle
     })
   }
 }
@@ -29,6 +36,9 @@ const mutations = {
         path: '/'
       })
     }
+  },
+  [TYPES.UPDATE_PAGE_TITLE] (state, {pageTitle}) {
+    state.pageHeaderTitle = pageTitle
   }
 }
 

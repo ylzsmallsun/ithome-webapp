@@ -1,24 +1,15 @@
 <template>
   <div class="quanziPage">
-    <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">圈子</x-header>
     <div class="topicListContainer">
       <tie-item v-for="topic in topic_list" :key="topic.id" :topic="topic">
       </tie-item>
     </div>
-    <tabbar>
-      <tabbar-item show-dot @on-item-click="goToHomePage(0)">
-        <img slot="icon" src="../../assets/news-active.png">
-        <span slot="label">资讯</span>
-      </tabbar-item>
-      <tabbar-item>
-        <img slot="icon" src="../../assets/quanzi-active.png">
-        <span slot="label">圈子</span>
-      </tabbar-item>
-    </tabbar>
+    <my-tabbar></my-tabbar>
   </div>
 </template>
 <script>
 import TieItem from './TieItem'
+import MyTabbar from '../MyTabbar'
 import { mapGetters } from 'vuex'
 export default {
   data () {
@@ -37,16 +28,15 @@ export default {
     ])
   },
   components: {
-    TieItem
+    TieItem,
+    MyTabbar
   },
   mounted () {
     console.log('getting topic list...')
     this.$store.dispatch('getTopicList')
   },
   methods: {
-    goToHomePage (tabbarIndex) {
-      this.$store.dispatch('updateTabbarIndex', {tabbarIndex: tabbarIndex})
-    }
+
   }
 }
 </script>

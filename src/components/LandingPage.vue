@@ -1,23 +1,14 @@
 <template>
   <div class="homePage">
-    <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">IT之家</x-header>
     <swiper :list="swiper_list" auto height="180px"></swiper>
     <panel class="newsList" :list="news_list"></panel>
-    <tabbar>
-      <tabbar-item>
-        <img slot="icon" src="../assets/news-active.png">
-        <span slot="label">资讯</span>
-      </tabbar-item>
-      <tabbar-item show-dot @on-item-click="goToQuanziPage(1)">
-        <img slot="icon" src="../assets/quanzi-active.png">
-        <span slot="label">圈子</span>
-      </tabbar-item>
-    </tabbar>
+    <my-tabbar></my-tabbar>
   </div>
 </template>
 
 <script>
 import { Swiper, Panel } from 'vux'
+import MyTabbar from './MyTabbar'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -36,18 +27,13 @@ export default {
   },
   components: {
     Swiper,
-    Panel
+    Panel,
+    MyTabbar
   },
   mounted () {
     console.log('getting list...')
     // send request
     this.$store.dispatch('getNewsList')
-  },
-  methods: {
-    goToQuanziPage (tabbarIndex) {
-      console.log(tabbarIndex)
-      this.$store.dispatch('updateTabbarIndex', {tabbarIndex: tabbarIndex})
-    }
   }
 }
 </script>
@@ -60,9 +46,5 @@ h1, h2 {
 ul {
   list-style-type: none;
   padding: 0;
-}
-
-.weui-tabbar {
-  background: #ffffff;
 }
 </style>

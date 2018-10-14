@@ -1,17 +1,28 @@
 <template>
   <div id="app">
+    <x-header :left-options="{showBack: false}" :right-options="{showMore: true}">
+      {{pageHeaderTitle}}
+    </x-header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    ...mapGetters([
+      'pageHeaderTitle'
+    ])
+  }
 }
 </script>
 
 <style lang="less">
   @import '~vux/src/styles/reset.less';
+  @themeColor1:  #d22222;
 
   html, body {
     height: 100%;
@@ -25,7 +36,7 @@ export default {
     position: relative;
   }
   .vux-header {
-    background-color: #d22222 !important;
+    background-color: @themeColor1 !important;
     .vux-header-more,
     .vux-header-back,
     .vux-header-left,
@@ -54,4 +65,10 @@ export default {
     margin-bottom: 50px;
     overflow: scroll !important;
   }
+  .weui-tabbar__item.weui-bar__item_on {
+    .weui-tabbar__label {
+      color: @themeColor1 !important;
+    }
+  }
+
 </style>
